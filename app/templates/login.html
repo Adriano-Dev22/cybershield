@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-zinc-950 text-white min-h-screen flex items-center justify-center">
+    <div class="max-w-md w-full bg-zinc-900 p-8 rounded-2xl shadow-2xl border border-zinc-700">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-emerald-500">🔰 CyberShield</h1>
+            <p class="text-zinc-400 mt-2">Mini SIEM - Monitoramento de Segurança</p>
+        </div>
+
+        <form action="/auth/login" method="post" class="space-y-6">
+            <div>
+                <label class="block text-sm font-medium mb-1">Usuário</label>
+                <input type="text" name="username" 
+                       class="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500" 
+                       placeholder="admin" required>
+            </div>
+            <div>
+                <label class="block text-sm font-medium mb-1">Senha</label>
+                <input type="password" name="password" 
+                       class="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500" 
+                       required>
+            </div>
+            <button type="submit" 
+                    class="w-full bg-emerald-600 hover:bg-emerald-700 py-3 rounded-lg font-semibold transition">
+                Entrar no Dashboard
+            </button>
+        </form>
+
+        <p class="text-center text-zinc-500 text-sm mt-6">
+            Não tem conta? <a href="/auth/register" class="text-emerald-400 hover:underline">Cadastre-se</a>
+        </p>
+    </div>
+</body>
+</html>

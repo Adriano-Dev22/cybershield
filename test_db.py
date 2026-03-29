@@ -1,0 +1,3 @@
+from app.database import create_db_and_tables
+create_db_and_tables()
+print('✅ Banco de dados configurado com sucesso!')

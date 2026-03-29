@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield - Mini SIEM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/htmx.org@1.9.12/dist/htmx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', system-ui, sans-serif; }
+        .alert-critical { animation: pulse 2s infinite; }
+    </style>
+</head>
+<body class="bg-base-900 text-base-content">
+    <div class="navbar bg-base-100 shadow-xl">
+        <div class="flex-1">
+            <a href="/dashboard" class="btn btn-ghost text-xl font-bold">🔰 CyberShield</a>
+        </div>
+        <div class="flex-none">
+            <span class="badge badge-success mx-4">Online</span>
+            <a href="/" class="btn btn-outline btn-sm">Sair</a>
+        </div>
+    </div>
+
+    {% block content %}{% endblock %}
+</body>
+</html>

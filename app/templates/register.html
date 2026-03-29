@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center bg-base-900">
+    <div class="card w-96 bg-base-100 shadow-2xl">
+        <div class="card-body">
+            <h2 class="card-title text-3xl justify-center mb-6">🔰 CyberShield</h2>
+            <h3 class="text-center text-xl mb-8">Criar Conta</h3>
+            
+            <form action="/auth/register" method="post" class="space-y-4">
+                <div class="form-control">
+                    <label class="label"><span class="label-text">Usuário</span></label>
+                    <input type="text" name="username" class="input input-bordered" required />
+                </div>
+                <div class="form-control">
+                    <label class="label"><span class="label-text">Email</span></label>
+                    <input type="email" name="email" class="input input-bordered" required />
+                </div>
+                <div class="form-control">
+                    <label class="label"><span class="label-text">Senha</span></label>
+                    <input type="password" name="password" class="input input-bordered" required />
+                </div>
+                <button type="submit" class="btn btn-success w-full">Cadastrar</button>
+            </form>
+
+            <div class="text-center mt-6">
+                <a href="/auth/login" class="link link-primary">Já tenho conta → Entrar</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

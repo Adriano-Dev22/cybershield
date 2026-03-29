@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="p-6 max-w-7xl mx-auto">
+    <div class="flex justify-between items-center mb-8">
+        <h1 class="text-3xl font-bold">Dashboard de Segurança</h1>
+        <div class="flex gap-3">
+            <button onclick="generateLogs()" 
+                    class="btn btn-accent">🔄 Gerar Logs Fake (Simular Ataque)</button>
+            <a href="/dashboard" class="btn btn-primary">Atualizar</a>
+        </div>
+    </div>
+
+    <!-- Alertas Críticos -->
+    <div class="mb-8">
+        <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
+            🚨 Alertas Ativos
+            <span class="badge badge-error">{{ alerts|length }}</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {% for alert in alerts %}
+            <div class="alert alert-error shadow-lg">
+                <span>{{ alert.title }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Tabela de Eventos -->
+    <div class="bg-base-100 rounded-box shadow-xl overflow-hidden">
+        <div class="p-4 border-b flex justify-between">
+            <h2 class="text-lg font-semibold">Eventos Recentes</h2>
+            <span class="text-sm text-base-content/70">{{ events|length }} eventos</span>
+        </div>
+        <table class="table table-zebra w-full">
+            <thead>
+                <tr>
+                    <th>Data/Hora</th>
+                    <th>IP</th>
+                    <th>Usuário</th>
+                    <th>Tipo</th>
+                    <th>Status</th>
+                    <th>Severidade</th>
+                    <th>MITRE</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in events %}
+                <tr>
+                    <td>{{ event.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                    <td><span class="font-mono">{{ event.source_ip }}</span></td>
+                    <td>{{ event.username or '-' }}</td>
+                    <td>{{ event.event_type }}</td>
+                    <td>
+                        <span class="badge {% if event.status == 'fail' %}badge-error{% else %}badge-success{% endif %}">
+                            {{ event.status }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge {% if event.severity == 'critical' %}badge-error{% elif event.severity == 'suspicious' %}badge-warning{% else %}badge-info{% endif %}">
+                            {{ event.severity }}
+                        </span>
+                    </td>
+                    <td class="font-mono text-xs">{{ event.mitre_tactic or 'N/A' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+function generateLogs() {
+    fetch('/api/events/generate', { method: 'POST' })
+        .then(() => location.reload());
+}
+</script>
+{% endblock %}
