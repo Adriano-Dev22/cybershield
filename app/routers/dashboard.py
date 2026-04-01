@@ -8,20 +8,27 @@ from app.models.event import SecurityEvent
 from app.models.alert import Alert
 
 router = APIRouter()
+
+# Templates deve ser definido aqui para evitar erro "templates is not defined"
 templates = Jinja2Templates(directory="app/templates")
+
 
 @router.get("/", response_class=HTMLResponse)
 async def dashboard_page(request: Request, session: Session = Depends(get_session)):
+    """Página principal do Dashboard"""
     events = session.exec(
-        select(SecurityEvent).order_by(SecurityEvent.timestamp.desc())  # type: ignore
+        select(SecurityEvent).order_by(SecurityEvent.timestamp.desc())
     ).all()
     
     alerts = session.exec(
-        select(Alert).order_by(Alert.timestamp.desc())  # type: ignore
+        select(Alert).order_by(Alert.timestamp.desc())
     ).all()
+
+    unique_ips = len({event.source_ip for event in events})
 
     return templates.TemplateResponse("dashboard.html", {
         "request": request,
         "events": events,
-        "alerts": alerts
+        "alerts": alerts,
+        "unique_ips": unique_ips
     })
