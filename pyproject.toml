@@ -1,0 +1,35 @@
+[project]
+name = "cybershield"
+version = "0.1.0"
+description = "Professional SIEM platform with real-time threat detection"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [
+  { name = "Claudemir Adriano", email = "" }
+]
+keywords = ["siem", "security", "threat-detection", "fastapi", "mitre-attack"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+select = ["E", "F", "W", "I", "N", "UP"]
+ignore = ["E501"]
+exclude = ["venv", ".venv", "migrations"]
+
+[tool.ruff.isort]
+known-first-party = ["app"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+exclude = ["venv/"]
