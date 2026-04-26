@@ -150,3 +150,41 @@ Inspirado em sistemas profissionais de SIEM utilizados em:
 Monitoramento contínuo de ameaças
 Resposta a incidentes de segurança
 Ambientes corporativos de alta segurança
+
+---
+
+## 🗂️ Full Module Architecture
+
+| Module | Path | Description |
+|--------|------|-------------|
+| Main | `app/main.py` | FastAPI app entry point |
+| Models | `app/models/` | SQLModel database models |
+| Routers | `app/routers/` | API route handlers |
+| Services | `app/services/` | Business logic and detection engine |
+| Templates | `app/templates/` | Jinja2 HTML templates |
+
+## 🛠️ Dev Commands
+
+```bash
+make dev        # Run with auto-reload
+make test       # Run test suite
+make lint       # Lint with ruff
+make format     # Format code
+make docker-up  # Start with Docker
+```
+
+## 🤝 Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+
+## 🔐 Security
+
+See [SECURITY.md](./SECURITY.md) for our vulnerability disclosure policy.
+
+## 📋 Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md) for the full history of changes.
+
+## 🧭 Code of Conduct
+
+This project follows a [Code of Conduct](./CODE_OF_CONDUCT.md).
